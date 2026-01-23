@@ -1,21 +1,32 @@
 knockback:
 
   #If you want to use vanilla knockback, set to false
+  #バニラの挙動に戻す場合はfalseにしてください
   active: true
 
-  #Horizontal knockback multiplier (default: 1.0)
-  #Due to technical limitations or other factors,
-  #effects below 1.0 are not expected to be very significant.
-  horizontalkb: 1.0
-  
-  #Vertical knockback (default: 0.35)
-  #When the value is low, it seems to become closer to vanilla knockback.
-  verticalkb: 0.35
+  #If you want to enable knockback even when blocking with a shield, set to true
+  #盾でガードした時でもノックバックさせるかどうか
+  active-on-shield: false
 
+  #Horizontal knockback (default: 0.32)
+  #水平ノックバック (デフォルトは0.32)
+  horizontalkb: 0.32
 
+  #Vertical knockback (default: 0.38)
+  #垂直ノックバック (デフォルトは0.38)
+  verticalkb: 0.38
 
+  #Additional sprint knockback multiplier (default: 1.25)
+  #ダッシュ時の追加ノックバック倍数 (デフォルトは1.25)
+  sprintkb: 1.25
 
+  #Additional critical damage up knockback multiplier (default: 1.0)
+  #クリティカル時の追加の上KB倍率 (デフォルトは1.0)
+  critboostkb: 1.0
 
+#If you want to enable debug mode, set to true
+#デバッグモードを有効にする場合はtrueにしてください
+debug: false
 
-#Do not Touch!!
-config-version: 1
+#Do not Touch!! 触るな!!
+config-version: 6

@@ -1,7 +1,7 @@
 name: UpOnlyKB
 version: '1.0.5'
-main: jp.yoma.upOnlyKB
-api-version: '1.20'
+main: jp.yoma.Main
+api-version: '1.21'
 authors: [ 紅月妖魔 ]
 description: RemoveUnderKB
 commands:
