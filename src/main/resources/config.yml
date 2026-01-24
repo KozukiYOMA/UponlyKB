@@ -24,9 +24,13 @@ knockback:
   #クリティカル時の追加の上KB倍率 (デフォルトは1.0)
   critboostkb: 1.0
 
+  #Knockback multiplier per level of knockback enchantment (default: 0.75)
+  #ノックバックエンチャント1レベルあたりのノックバック倍率 (デフォルトは0.75)
+  knockback-enchant-multiplier: 0.75
+
 #If you want to enable debug mode, set to true
 #デバッグモードを有効にする場合はtrueにしてください
 debug: false
 
 #Do not Touch!! 触るな!!
-config-version: 6
+config-version: 7

@@ -28,10 +28,14 @@ public final class Main extends JavaPlugin implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {//ダメージ時に発生するノックバック変更ロジック
-        debug.debugmessage("EntityDamageByEntityEvent triggered.");//debug
+        debug.debugmessage("=================EntityDamageByEntityEvent triggered.=================");//debug
 
         //無効化されている、もしくは無敵状態の場合はなにもしない。
-        if (!configvalues.isCkbactive()||event.getEntity().isInvulnerable()){return;}
+        if (!configvalues.isCkbactive()||event.getEntity().isInvulnerable()){
+            debug.debugmessage("EventCanceled");//debug
+            debug.debugmessage("============================================================");//debug
+            return;
+        }
         debug.debugmessage("UpOnlyKB is active now.");//debug
         
         Entity entity = event.getEntity();//ダメージを受けたエンティティを取得
@@ -55,13 +59,25 @@ public final class Main extends JavaPlugin implements Listener {
                     Vector knockbackVector = kbcalc.calculateKnockback(entity, attacker, configvalues);
                     entity.setVelocity(knockbackVector);//ノックバックの適用
                     debug.debugmessage(String.valueOf(knockbackVector));//debug
+                    debug.debugmessage("============================================================");//debug
+                }else{
+                    debug.debugmessage("Event is trued Cancelled flags");//debug
+                    debug.debugmessage("============================================================");//debug
                 }
+            }else{
+                debug.debugmessage("Player is invincible.");//debug
+                debug.debugmessage("NoDamageTicks: "+living.getNoDamageTicks());//debug
+                debug.debugmessage("============================================================");//debug
             }
+        }else{
+            debug.debugmessage("HurtEntity is not Player");//debug
+            debug.debugmessage("============================================================");//debug
         }
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onEntityKnockback(EntityKnockbackEvent event) {//ノックバックをキャンセルしてカスタムのもののみにする。
+        if (!configvalues.isCkbactive()||event.getEntity().isInvulnerable()){return;}//無効化時は動作させない。
         //プレイヤーにのみ処理を行う。希望があればプレイヤー以外にも対応させようかな?まぁプレイヤー以外はdataコマンド使って変えれるし。
         if (event.getEntity() instanceof Player) {
             //エンティティへの攻撃と盾ブロックのKBをキャンセルする。これでノックバックはカスタムのものだけになるはずで。
