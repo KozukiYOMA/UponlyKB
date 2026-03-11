@@ -4,6 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.command.CommandSender;
@@ -40,6 +41,16 @@ public final class Main extends JavaPlugin implements Listener {
         
         Entity entity = event.getEntity();//ダメージを受けたエンティティを取得
         Entity attacker = event.getDamager();//ダメージを与えたエンティティを取得
+
+        if (event.getCause() == EntityDamageByEntityEvent.DamageCause.ENTITY_EXPLOSION) {
+            debug.debugmessage("DamageCause is ENTITY_EXPLOSION");//debug
+            return;
+        }
+
+        if (attacker.getType() == EntityType.IRON_GOLEM) {
+            debug.debugmessage("Attacker is Iron Golem");//debug
+            return;
+        }
 
         //プレイヤーにのみ処理を行う。希望があればプレイヤー以外にも対応させようかな?まぁプレイヤー以外はdataコマンド使って変えれるし。
         if (entity instanceof Player) {
